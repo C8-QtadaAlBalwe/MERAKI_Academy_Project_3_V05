@@ -37,5 +37,5 @@ export const {
   deleteArticleById,
   setComments,
   addComment,
-} = counterSlice.actions;
-export default counterSlice.reducer;
+} = articles.actions;
+export default articlesSlice.reducer;
