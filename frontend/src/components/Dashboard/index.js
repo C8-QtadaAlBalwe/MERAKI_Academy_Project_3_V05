@@ -1,11 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
-import { setArticles,addArticle,
-  updateArticleById,
-  deleteArticleById,
-  setComments,
-  addComment, } from "../redux/reducer/articles";
+import { setArticles} from "../redux/reducer/articles";
 // import { AuthContext } from "../../contexts/authContext";
 import {  useDispatch,useSelector} from "react-redux";
 //===============================================================
