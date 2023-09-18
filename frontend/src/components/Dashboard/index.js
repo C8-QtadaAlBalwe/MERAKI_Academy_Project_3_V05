@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
-
-import { AuthContext } from "../../contexts/authContext";
+import { setArticles,addArticle,
+  updateArticleById,
+  deleteArticleById,
+  setComments,
+  addComment, } from "../redux/reducer/articles";
+// import { AuthContext } from "../../contexts/authContext";
+import {  useDispatch,useSelector} from "react-redux";
 //===============================================================
 
 const Dashboard = () => {
-  const { token, userId } = useContext(AuthContext);
-  const [articles, setArticles] = useState(null);
+  // const { token, userId } = useContext(AuthContext);
+  // const [articles, setArticles] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [updateBox, setUpdateBox] = useState(false);
@@ -15,8 +20,19 @@ const Dashboard = () => {
   const [message, setMessage] = useState("");
   const [comment, setComment] = useState("");
   const [show, setShow] = useState("");
+
+  const dispatch = useDispatch();
+  const {token,articles,userId} = useSelector((state) => {
+    return {
+      token:state.auth.token,
+      articles:state.articles.articles,
+      userId:state.auth.userId
+    };
+  });
   //===============================================================
   const getAllArticles = async () => {
+    
+
     try {
       const result = await axios.get("http://localhost:5000/articles", {
         headers: {
@@ -24,7 +40,7 @@ const Dashboard = () => {
         },
       });
       if (result.data.success) {
-        setArticles(result.data.result);
+        dispatch(setArticles(result.data.result))
         setMessage("");
       } else throw Error;
     } catch (error) {
