@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
-
+import { useDispatch, useSelector } from "react-redux";
+import{setLogin,setLogout,setUserId}from "../redux/reducer/auth/index"
 import axios from "axios";
 
 import { AuthContext } from "../../contexts/authContext";
@@ -9,8 +10,17 @@ import { AuthContext } from "../../contexts/authContext";
 //===============================================================
 
 const Login = () => {
-  const { isLoggedIn, saveToken } = useContext(AuthContext);
+  // const { isLoggedIn, saveToken } = useContext(AuthContext);
   const history = useNavigate();
+  const dispatch = useDispatch();
+  
+  const {isLoggedIn} = useSelector((state) => {
+    return {
+      isLoggedIn:state.auth.isLoggedIn
+    };
+  });
+
+
 
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -28,9 +38,12 @@ const Login = () => {
       });
       if (result.data) {
         setMessage("");
-        localStorage.setItem("token", result.data.token);
-        localStorage.setItem("userId", result.data.userId);
-        saveToken(result.data.token, result.data.userId);
+        dispatch(setLogin(result.data.token))
+        dispatch(setUserId(result.data.userId))
+
+        // localStorage.setItem("token", result.data.token);
+        // localStorage.setItem("userId", result.data.userId);
+        // // saveToken(result.data.token, result.data.userId);
       } else throw Error;
     } catch (error) {
       if (error.response && error.response.data) {

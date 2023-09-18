@@ -38,4 +38,4 @@ export const {
   setComments,
   addComment,
 } = articles.actions;
-export default articlesSlice.reducer;
+export default articles.reducer;
