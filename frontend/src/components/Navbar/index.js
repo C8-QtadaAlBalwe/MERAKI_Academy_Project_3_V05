@@ -1,18 +1,26 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-
+import { setLogout } from "../redux/reducer/auth";
 import { AuthContext } from "../../contexts/authContext";
-
+import { useDispatch ,useSelector} from "react-redux";
 //===============================================================
 
 const NavBar = () => {
-  const { logout, isLoggedIn } = useContext(AuthContext);
+  // const { isLoggedIn } = useContext(AuthContext);
+  const dispatch = useDispatch();
+
+  const {isLoggedIn} = useSelector((state) => {
+    return {
+      isLoggedIn:state.auth.isLoggedIn
+    };
+  });
 
   //===============================================================
 
   return (
     <>
+    
       <div className="NavBar">
         {isLoggedIn ? (
           <>
@@ -22,7 +30,7 @@ const NavBar = () => {
             <Link className="Link" to="/newArticle">
               Add New Article
             </Link>
-            <button className="logout" onClick={logout}>
+            <button className="logout" onClick={((e)=>{dispatch(setLogout())})}>
               Logout
             </button>
           </>

@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
-import{setLogin,setLogout,setUserId}from "../redux/reducer/auth/index"
+import{setLogin,setUserId}from "../redux/reducer/auth/index"
 import axios from "axios";
 
 import { AuthContext } from "../../contexts/authContext";
@@ -43,7 +43,7 @@ const Login = () => {
 
         // localStorage.setItem("token", result.data.token);
         // localStorage.setItem("userId", result.data.userId);
-        // // saveToken(result.data.token, result.data.userId);
+        //saveToken(result.data.token, result.data.userId);
       } else throw Error;
     } catch (error) {
       if (error.response && error.response.data) {
