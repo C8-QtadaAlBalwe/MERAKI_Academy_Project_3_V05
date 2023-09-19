@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
-import { setArticles,updateArticleById ,deleteArticleById} from "../redux/reducer/articles";
+import { setArticles,updateArticleById ,deleteArticleById,setComments} from "../redux/reducer/articles";
 // import { AuthContext } from "../../contexts/authContext";
 import {  useDispatch,useSelector} from "react-redux";
 //===============================================================
@@ -104,6 +104,8 @@ const Dashboard = () => {
         `http://localhost:5000/comments/${article_id}`);
       if (result.data.success) {
         const comments = result.data.result;
+        console.log(comments)
+        dispatch(setComments({comments,article_id}))//.................. question??
         updateArticleState(article_id, comments);
       } else throw Error;
     } catch (error) {
@@ -151,7 +153,6 @@ const Dashboard = () => {
             <button
               className="ShowBtn"
               onClick={() => {
-                getCommentsByArticle(article.id);
                 setShow(article.id);
               }}
             >

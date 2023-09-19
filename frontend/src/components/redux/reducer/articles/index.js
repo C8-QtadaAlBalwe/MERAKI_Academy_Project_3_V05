@@ -25,8 +25,7 @@ export const articles = createSlice({
       state.articles = state.articles.filter((article)=>  article.id !== action.payload);
     },
     setComments: (state, action) => {
-      // article _id
-      // payload: { array of comments, article_id
+     state.articles[action.payload.article_id].comments = action.payload.comments
     },
     addComment: (state, action) => {
       //         Add the new comment to a specific article comments array
