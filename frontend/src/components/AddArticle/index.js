@@ -24,7 +24,6 @@ const AddArticle = () => {
     };
   });
   //===============================================================
-
   const createNewArticle = async (e) => {
     e.preventDefault();
     try {
@@ -44,7 +43,9 @@ const AddArticle = () => {
       if (result.data.success) {
         setStatus(true);
         setMessage(result.data.message);
-        dispatch(AddArticle(result.data)) //...............................
+        console.log(result.data)
+        dispatch(AddArticle(result.data))
+
       }
     } catch (error) {
       if (!error.response.data.success) {
