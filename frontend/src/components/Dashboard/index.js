@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
-import { setArticles,updateArticleById ,deleteArticleById,setComments} from "../redux/reducer/articles";
+import { setArticles,updateArticleById ,deleteArticleById,setComments,addComment} from "../redux/reducer/articles";
 // import { AuthContext } from "../../contexts/authContext";
 import {  useDispatch,useSelector} from "react-redux";
 //===============================================================
@@ -180,7 +180,7 @@ const Dashboard = () => {
               <button
                 className="commentBtn"
                 onClick={() => {
-                  if (comment) createComment(article.id);
+                  if (comment) dispatch(addComment({newComment:comment, article_id:article.id}));//....... qustion
                 }}
               >
                 Add comment

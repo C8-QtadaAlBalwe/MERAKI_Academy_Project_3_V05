@@ -28,8 +28,7 @@ export const articles = createSlice({
      state.articles[action.payload.article_id].comments = action.payload.comments
     },
     addComment: (state, action) => {
-      //         Add the new comment to a specific article comments array
-      // payload: { new comment, article_id }
+      state.articles.article.comments.push(action.payload)
     },
   },
 });
