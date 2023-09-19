@@ -23,8 +23,6 @@ const Dashboard = () => {
       token:state.auth.token,
       articles:state.articles.articles,
       userId:state.auth.userId,
-      
-      //......................... qustion ??????
     };
   });
   //===============================================================

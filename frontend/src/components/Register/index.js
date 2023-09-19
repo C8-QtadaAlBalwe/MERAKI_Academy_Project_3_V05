@@ -2,13 +2,17 @@ import React, { useContext, useState } from "react";
 import "./style.css";
 import axios from "axios";
 
-import { AuthContext } from "../../contexts/authContext";
-
+// import { AuthContext } from "../../contexts/authContext";
+import {useSelector} from "react-redux";
 // =================================================================
 
 const Register = () => {
-  const { isLoggedIn } = useContext(AuthContext);
-
+  // const { isLoggedIn } = useContext(AuthContext);
+  const {isLoggedIn } = useSelector((state) => {
+    return {
+      isLoggedIn :state.auth.isLoggedIn 
+    };
+  });
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState(0);

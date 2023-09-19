@@ -43,7 +43,7 @@ const AddArticle = () => {
       if (result.data.success) {
         setStatus(true);
         setMessage(result.data.message);
-        dispatch(AddArticle(result.data))
+        dispatch(addArticle(result.data))
 
       }
     } catch (error) {
