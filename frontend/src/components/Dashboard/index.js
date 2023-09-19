@@ -52,7 +52,7 @@ const Dashboard = () => {
   //===============================================================
   const handleUpdateClick = (article) => {
     setUpdateBox(!updateBox);
-    //  setArticleId(article.id);
+     setArticleId(article.id);
     //  setTitle(article.title);
     // setDescription(article.description);
     if (updateBox) updateArticle(article.id);
@@ -214,7 +214,7 @@ const Dashboard = () => {
               </button>
               <button
                 className="update"
-                onClick={() => handleUpdateClick(article,dispatch(updateArticleById({id:article.id,title,description})))}//...... qutions
+                onClick={() => handleUpdateClick(article,dispatch(updateArticleById({id:article.id,title,description})))}
               >
                 Update
               </button>
