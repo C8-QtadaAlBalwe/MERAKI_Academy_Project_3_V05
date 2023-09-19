@@ -13,8 +13,13 @@ export const articles = createSlice({
       state.articles.push(action.payload);
     },
     updateArticleById: (state, action) => {
-      // Updates an article in the articles state
-      // payload: updatedArticl
+      state.articles = state.articles.map((ele,i)=>{
+        if(ele.id === action.payload.id){
+        ele.title = action.payload.title
+        ele.description = action.payload.description
+        }
+        return ele
+    })
     },
     deleteArticleById: (state, action) => {
       // Deletes the article from the articles state

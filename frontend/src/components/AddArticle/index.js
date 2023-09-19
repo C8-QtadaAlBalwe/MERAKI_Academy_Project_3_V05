@@ -43,7 +43,6 @@ const AddArticle = () => {
       if (result.data.success) {
         setStatus(true);
         setMessage(result.data.message);
-        console.log(result.data)
         dispatch(AddArticle(result.data))
 
       }

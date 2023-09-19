@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
-import { setArticles} from "../redux/reducer/articles";
+import { setArticles,updateArticleById} from "../redux/reducer/articles";
 // import { AuthContext } from "../../contexts/authContext";
 import {  useDispatch,useSelector} from "react-redux";
 //===============================================================
@@ -22,7 +22,9 @@ const Dashboard = () => {
     return {
       token:state.auth.token,
       articles:state.articles.articles,
-      userId:state.auth.userId
+      userId:state.auth.userId,
+      
+      //......................... qustion ??????
     };
   });
   //===============================================================
@@ -50,9 +52,9 @@ const Dashboard = () => {
   //===============================================================
   const handleUpdateClick = (article) => {
     setUpdateBox(!updateBox);
-    setArticleId(article.id);
-    setTitle(article.title);
-    setDescription(article.description);
+    //  setArticleId(article.id);
+    //  setTitle(article.title);
+    // setDescription(article.description);
     if (updateBox) updateArticle(article.id);
   };
 
@@ -64,6 +66,7 @@ const Dashboard = () => {
         title,
         description,
       });
+      dispatch(updateArticleById({title,description,id}))
       getAllArticles();
     } catch (error) {
       console.log(error);
@@ -211,7 +214,7 @@ const Dashboard = () => {
               </button>
               <button
                 className="update"
-                onClick={() => handleUpdateClick(article)}
+                onClick={() => handleUpdateClick(article,dispatch(updateArticleById({id:article.id,title,description})))}//...... qutions
               >
                 Update
               </button>
