@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
-import { setArticles,updateArticleById} from "../redux/reducer/articles";
+import { setArticles,updateArticleById ,deleteArticleById} from "../redux/reducer/articles";
 // import { AuthContext } from "../../contexts/authContext";
 import {  useDispatch,useSelector} from "react-redux";
 //===============================================================
@@ -208,7 +208,7 @@ const Dashboard = () => {
               )}
               <button
                 className="delete"
-                onClick={() => deleteArticle(article.id)}
+                onClick={() => dispatch(deleteArticleById(article.id))}
               >
                 X
               </button>

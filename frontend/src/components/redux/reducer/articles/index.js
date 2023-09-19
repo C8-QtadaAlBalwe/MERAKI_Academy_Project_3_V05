@@ -22,8 +22,7 @@ export const articles = createSlice({
     })
     },
     deleteArticleById: (state, action) => {
-      // Deletes the article from the articles state
-      // payload: id
+      state.articles = state.articles.filter((article)=>  article.id !== action.payload);
     },
     setComments: (state, action) => {
       // article _id
